@@ -1,5 +1,6 @@
 package com.davidbpaul;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -48,9 +49,19 @@ public class Value {
 
     }
     public void printItems(){
+        DecimalFormat zero = new DecimalFormat("##0");
         for(int i=0;i<this.myItems.size(); i++){
-            System.out.println((i+1) + "." + this.myItems.get(i).getId() + " -> "
-                    + this.myItems.get(i).getName());
+
+            int id = this.myItems.get(i).getId();
+            String name = this.myItems.get(i).getName();
+            double interest =  this.myItems.get(i).getInterest();
+            double rate = this.myItems.get(i).getRate();
+            int year = this.myItems.get(i).getYears();
+
+            System.out.println(id + " -> "
+                    + name + "'s Investment Results ($" + zero.format(interest)+
+                    " %" + zero.format(rate) + " over " + year + " years");
+
         }
     }
 }
