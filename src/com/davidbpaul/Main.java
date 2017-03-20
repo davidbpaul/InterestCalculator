@@ -4,12 +4,11 @@ import java.util.Scanner;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
-    private static int id;
     private static String name;
     private static double initialInvestment;
     private static double rate;
     private static int years;
-    private static Value submit = new Value(id, name, initialInvestment, rate, years);
+    private static Value submit = new Value(name, initialInvestment, rate, years);
 
 
     public static void main(String[] args) {
@@ -27,12 +26,12 @@ public class Main {
                     quit = true;
                     break;
                 case 1:
-                    getId();
                     getName();
                     getInitialInvestment();
                     getRate();
                     getYears();
                     addNewItem();
+                    print
                     break;
                 case 2:
                     submit.printItems();
@@ -68,7 +67,7 @@ public class Main {
                 "6 - to print actions available list\n");
     }
     private static void addNewItem(){
-        Interest newItem = Interest.createItem(id, name, initialInvestment, rate, years);
+        Interest newItem = Interest.createItem(name, initialInvestment, rate, years);
         if(submit.addNewItem(newItem)){
             System.out.println("New Item added");
         }else{
@@ -77,12 +76,6 @@ public class Main {
     }
 
 
-
-
-    private static int getId(){
-        return 1;
-    }
-    //	ask for user to input name. returns string
 
     //	ask for user to input name. returns string
     private static String getName() {
