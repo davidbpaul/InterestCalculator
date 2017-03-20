@@ -105,7 +105,7 @@ public class Value {
         }
     }
     //	calculates investment. returns array of data(type double)
-    private double[] calculate(double investment, double rate, int years) {
+    public double[] calculate(double investment, double rate, int years) {
 //		year+1  to start to count year of investment
         double[] array = new double[years+1];
         for(int i=0;i<array.length;i++){
@@ -118,7 +118,7 @@ public class Value {
         return array;
     }
     //	print table including years and balance in console
-    private void printArray(String name,double investment, double rate, int years, double[] array) {
+    public void printArray(String name,double investment, double rate, int years, double[] array) {
         DecimalFormat two = new DecimalFormat("##0.00");
         DecimalFormat zero = new DecimalFormat("##0");
         System.out.println(name +"'s Investment Results ($" + zero.format(investment) + " %" + zero.format(rate) + " over " + zero.format(years) + " years)");

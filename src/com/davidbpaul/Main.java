@@ -169,12 +169,12 @@ public class Main {
             System.out.println(" Item not found");
             return;
         }
-        System.out.println("Name: " + existingItemRecord.getName());
-        if(submit.removeContact(existingItemRecord )){
-            System.out.println("Successfully deleted");
-        }else{
-            System.out.println("Error deleting contact");
-        }
+        name = existingItemRecord.getName();
+        initialInvestment = existingItemRecord.getInterest();
+        rate = existingItemRecord.getRate();
+        years = existingItemRecord.getYears();
+        submit.printArray(name, initialInvestment, rate, years, submit.calculate(initialInvestment, rate, years));
+
     }
 
 }
