@@ -18,14 +18,17 @@ public class Interest {
 
 
     public String getName() {
+
         return name;
     }
 
     public double getInterest() {
+
         return interest;
     }
 
     public double getRate() {
+
         return rate;
     }
 

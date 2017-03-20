@@ -3,16 +3,19 @@ package com.davidbpaul;
 import java.util.Scanner;
 
 public class Main {
+//    create entry point for taking input
     private static Scanner scanner = new Scanner(System.in);
+
     private static String name;
     private static double initialInvestment;
     private static double rate;
     private static int years;
-    private static Value submit = new Value(name, initialInvestment, rate, years);
+
+    private static Value submit = new Value();
 
 
     public static void main(String[] args) {
-
+//  print out actions
         boolean quit = false;
         startApp();
         printActions();
@@ -50,21 +53,23 @@ public class Main {
             }
         }
     }
-
+//  welcome message
     private static void startApp(){
         System.out.println("--Welcome To The Interest Calculator Pro--");
 
     }
+//    print actions available
     private static void printActions(){
         System.out.println("\nAvailable actions:\npress");
         System.out.println("0 - to shutdown\n" +
-                "1 - to add a new contact\n" +
-                "2 - to print contacts\n" +
-                "3 - to update existing contact\n" +
-                "4 - to remove existing contact\n" +
-                "5 - query if an existing contact exist\n" +
+                "1 - to add a new item\n" +
+                "2 - to print items\n" +
+                "3 - to update existing item\n" +
+                "4 - to remove existing item\n" +
+                "5 - print out investment results of item\n" +
                 "6 - to print actions available list\n");
     }
+//    add a new item
     private static void addNewItem(){
         Interest newItem = Interest.createItem(name, initialInvestment, rate, years);
         if(submit.addNewItem(newItem)){
@@ -123,6 +128,7 @@ public class Main {
         return years;
 
     }
+//    remove item
     private static void removeItem(){
         System.out.println("Enter existing name: ");
         String name = scanner.nextLine();
@@ -131,18 +137,20 @@ public class Main {
             System.out.println(" Item not found");
             return;
         }
-        if(submit.removeContact(existingItemRecord )){
+        if(submit.removeItem(existingItemRecord )){
             System.out.println("Successfully deleted");
         }else{
-            System.out.println("Error deleting contact");
+            System.out.println("Error deleting Item");
         }
     }
+
+//    update item
     private static void updateExitstingItem() {
         System.out.println("Enter existing name: ");
         String name = scanner.nextLine();
         Interest existingItemRecord = submit.queryItem(name);
         if (existingItemRecord == null) {
-            System.out.println(" Contact not found");
+            System.out.println(" Item not found");
             return;
         }
         System.out.println("Enter new name: ");
@@ -161,6 +169,8 @@ public class Main {
             System.out.println("Error updating record");
         }
     }
+
+//    Select a item. print out the investment results
     private static void queryItem(){
         System.out.println("Enter existing name: ");
         String name = scanner.nextLine();

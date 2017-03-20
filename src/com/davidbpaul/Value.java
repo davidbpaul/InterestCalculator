@@ -9,33 +9,28 @@ import java.util.ArrayList;
 
 
 public class Value {
-    private String myName;
-    private double myInterest;
-    private double myRate;
-    private int myYears;
+//    arrayList of investments
     private ArrayList<Interest> myItems;
 
-
-    public Value(String myName, double myInterest, double myRate, int myYears) {
-        this.myName = myName;
-        this.myInterest = myInterest;
-        this.myRate = myRate;
-        this.myYears = myYears;
+//    constructing array list
+    public Value() {
         this.myItems = new ArrayList<Interest>();
     }
-
+//    add new investment
     public boolean addNewItem(Interest item){
         if(findItem(item.getName()) >=0){
-            System.out.println("Contact is already on file");
+            System.out.println("Item is already on file");
             return false;
         }
         myItems.add(item);
         return true;
     }
-
+//    find investment index
     private int findItem(Interest searchItem){
+
         return this.myItems.indexOf(searchItem);
     }
+//    find investment by name
     private int findItem(String searchItem){
         for(int i=0; i<this.myItems.size(); i++){
             Interest item = this.myItems.get(i);
@@ -46,14 +41,7 @@ public class Value {
         return -1;
 
     }
-//    public void expand(searchItem) {
-//
-//        String name = this.myItems.get(i).getName();
-//        double interest =  this.myItems.get(i).getInterest();
-//        double rate = this.myItems.get(i).getRate();
-//        int year = this.myItems.get(i).getYears();
-//
-//    }
+//     update investment
     public boolean updateItem(Interest oldItem, Interest newItem){
         int foundPosition = findItem(oldItem);
         if(foundPosition < 0){
@@ -64,8 +52,8 @@ public class Value {
         System.out.println(oldItem.getName() + " , was replaced with " + newItem.getName());
         return true;
     }
-
-    public boolean removeContact(Interest item){
+//  remove investment
+    public boolean removeItem(Interest item){
         int foundPosition = findItem(item);
         if(foundPosition <0){
             System.out.println(item.getName() + ", was not found.");
@@ -76,12 +64,14 @@ public class Value {
         return true;
 
     }
+//    select investment
     public String queryItem(Interest item){
         if(findItem(item) >=0){
             return item.getName();
         }
         return null;
     }
+//    select investment by name
     public Interest queryItem(String name){
         int position = findItem(name);
         if(position >= 0){
@@ -89,6 +79,7 @@ public class Value {
         }
         return null;
     }
+//    print investments
     public void printItems(){
         DecimalFormat zero = new DecimalFormat("##0");
         for(int i=0;i<this.myItems.size(); i++){
