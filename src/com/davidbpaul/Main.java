@@ -31,23 +31,22 @@ public class Main {
                     getRate();
                     getYears();
                     addNewItem();
-                    print
                     break;
                 case 2:
                     submit.printItems();
                     break;
-//                case 3:
-//                    updateExitstingContact();
-//                    break;
-//                case 4:
-//                    removeContact();
-//                    break;
-//                case 5:
-//                    queryContact();
-//                    break;
-//                case 6:
-//                    printActions();
-//                    break;
+                case 3:
+                    updateExitstingItem();
+                    break;
+                case 4:
+                    removeItem();
+                    break;
+                case 5:
+                    queryItem();
+                    break;
+                case 6:
+                    printActions();
+                    break;
             }
         }
     }
@@ -124,6 +123,58 @@ public class Main {
         return years;
 
     }
+    private static void removeItem(){
+        System.out.println("Enter existing name: ");
+        String name = scanner.nextLine();
+        Interest existingItemRecord = submit.queryItem(name);
+        if(existingItemRecord == null){
+            System.out.println(" Item not found");
+            return;
+        }
+        if(submit.removeContact(existingItemRecord )){
+            System.out.println("Successfully deleted");
+        }else{
+            System.out.println("Error deleting contact");
+        }
+    }
+    private static void updateExitstingItem() {
+        System.out.println("Enter existing name: ");
+        String name = scanner.nextLine();
+        Interest existingItemRecord = submit.queryItem(name);
+        if (existingItemRecord == null) {
+            System.out.println(" Contact not found");
+            return;
+        }
+        System.out.println("Enter new name: ");
+        String newName = scanner.nextLine();
+        System.out.println("Enter new initial amount: ");
+        double newInterest = scanner.nextDouble();
+        System.out.println("Enter new rate: ");
+        double newRate = scanner.nextDouble();
+        System.out.println("Enter new length of investment: ");
+        int newYears = scanner.nextInt();
+        Interest newItem = Interest.createItem(newName, newInterest, newRate, newYears);
+        if (submit.updateItem(existingItemRecord, newItem)) {
+            System.out.println("Successfully updated record");
 
+        } else {
+            System.out.println("Error updating record");
+        }
+    }
+    private static void queryItem(){
+        System.out.println("Enter existing name: ");
+        String name = scanner.nextLine();
+        Interest existingItemRecord = submit.queryItem(name);
+        if(existingItemRecord == null){
+            System.out.println(" Item not found");
+            return;
+        }
+        System.out.println("Name: " + existingItemRecord.getName());
+        if(submit.removeContact(existingItemRecord )){
+            System.out.println("Successfully deleted");
+        }else{
+            System.out.println("Error deleting contact");
+        }
+    }
 
 }

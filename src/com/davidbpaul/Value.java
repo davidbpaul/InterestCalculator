@@ -25,6 +25,10 @@ public class Value {
     }
 
     public boolean addNewItem(Interest item){
+        if(findItem(item.getName()) >=0){
+            System.out.println("Contact is already on file");
+            return false;
+        }
         myItems.add(item);
         return true;
     }
@@ -50,6 +54,41 @@ public class Value {
 //        int year = this.myItems.get(i).getYears();
 //
 //    }
+    public boolean updateItem(Interest oldItem, Interest newItem){
+        int foundPosition = findItem(oldItem);
+        if(foundPosition < 0){
+            System.out.println(oldItem.getName() + " , was not found.");
+            return false;
+        }
+        this.myItems.set(foundPosition, newItem);
+        System.out.println(oldItem.getName() + " , was replaced with " + newItem.getName());
+        return true;
+    }
+
+    public boolean removeContact(Interest item){
+        int foundPosition = findItem(item);
+        if(foundPosition <0){
+            System.out.println(item.getName() + ", was not found.");
+            return false;
+        }
+        this.myItems.remove(foundPosition);
+        System.out.println(item.getName() + ", was deleted.");
+        return true;
+
+    }
+    public String queryItem(Interest item){
+        if(findItem(item) >=0){
+            return item.getName();
+        }
+        return null;
+    }
+    public Interest queryItem(String name){
+        int position = findItem(name);
+        if(position >= 0){
+            return this.myItems.get(position);
+        }
+        return null;
+    }
     public void printItems(){
         DecimalFormat zero = new DecimalFormat("##0");
         for(int i=0;i<this.myItems.size(); i++){
